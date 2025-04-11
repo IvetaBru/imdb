@@ -23,6 +23,8 @@ const reducer = (state: User[], action: UsersReducerActionTypes): User[] => {
 const UsersContext = createContext<UsersContextTypes | undefined>(undefined);
 
 const UsersProvider = ({ children }: ChildrenElementType) => {
+
+  const [users, dispatch] = useReducer(reducer, []);
   const [loggedInUser, setLoggedInUser] = useState<User | null>(() => {
     try {
       const stored = localStorage.getItem("loggedInUser");
@@ -32,17 +34,13 @@ const UsersProvider = ({ children }: ChildrenElementType) => {
     }
   });
 
-  const [users, dispatch] = useReducer(reducer, []);
-
   useEffect(() => {
     fetch(`http://localhost:8080/users`)
-      .then((res) => res.json())
-      .then((data: User[]) => {
-        dispatch({
-          type: "setUsers",
-          data: data,
-        });
-      });
+      .then(res => res.json())
+      .then(data => dispatch({
+        type: 'setUsers',
+        data: data
+      }))
   }, []);
 
   return (
