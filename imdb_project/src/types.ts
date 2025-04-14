@@ -1,12 +1,12 @@
 export type User = {
-  id: string,
+  id: string;
   username: string;
   email: string;
   password: string;
   passwordText: string;
   profilePicture?: string;
-  role: string         
-}
+  role: 'customer' | 'admin';
+};
 export type ChildrenElementType = {
   children: React.ReactElement
 }
