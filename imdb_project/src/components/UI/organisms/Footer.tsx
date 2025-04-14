@@ -124,11 +124,21 @@ const Footer = () => {
           <h1>Follow IMDb on social</h1>
           </div>
           <div className='Color'>
-          <Link><AudiotrackIcon className="icon-white"/></Link>
-          <Link><InstagramIcon className="icon-white"/></Link>
-          <Link><XIcon className="icon-white"/></Link>
-          <Link><SmartDisplayIcon className="icon-white"/></Link>
-          <Link><FacebookRoundedIcon className="icon-white"/></Link>
+  <a href="https://www.tiktok.com/@imdb" target="_blank" rel="noopener noreferrer">
+    <AudiotrackIcon className="icon-white" />
+  </a>
+  <a href="https://www.instagram.com/imdb/" target="_blank" rel="noopener noreferrer">
+    <InstagramIcon className="icon-white" />
+  </a>
+  <a href="https://x.com/imdb" target="_blank" rel="noopener noreferrer">
+    <XIcon className="icon-white" />
+  </a>
+  <a href="https://www.youtube.com/imdb" target="_blank" rel="noopener noreferrer">
+    <SmartDisplayIcon className="icon-white" />
+  </a>
+  <a href="" target="_blank" rel="noopener noreferrer">
+    <FacebookRoundedIcon className="icon-white" />
+  </a>
           </div>
         </section>
         <section className='Qrcode'>
