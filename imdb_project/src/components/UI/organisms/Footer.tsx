@@ -11,9 +11,6 @@ import RuleFolderIcon from '@mui/icons-material/RuleFolder';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 
 const StyledFooter = styled.footer`
-  footer{
-    height: ;
-  }
   .Display{
     display: flex;
     justify-content: space-between;
@@ -109,10 +106,12 @@ const StyledFooter = styled.footer`
 .Copyr a, .Copyr .icon-white {
   color: white;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+}
+.Copyr span{
+  font-size: small;
 }
 `
 const Footer = () => {
@@ -147,30 +146,30 @@ const Footer = () => {
           <h4>For Android and iOS</h4>
           </div>
           <div className='Qrdydis'>
-          <Link><QrCode2Icon className="Qr-white" /></Link>
+          <QrCode2Icon className="Qr-white" />
         </div>
         </section>
         </section>
         <section className='Tekstas'>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        >Help<Link><LaunchIcon className='Launch'/></Link>
+        >Help<LaunchIcon className='Launch'/>
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        >Side Index<Link><LaunchIcon className='Launch'/></Link>
+        >Side Index<LaunchIcon className='Launch'/>
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        >IMDbPro<Link><LaunchIcon className='Launch'/></Link>
+        >IMDbPro<LaunchIcon className='Launch'/>
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        >Box Office Mojo<Link><LaunchIcon className='Launch'/></Link>
+        >Box Office Mojo<LaunchIcon className='Launch'/>
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        >License IMDb Data<Link><LaunchIcon className='Launch'/></Link>
+        >License IMDb Data<LaunchIcon className='Launch'/>
         </a>
         </section>
         <section className='Tekstas'>
@@ -180,11 +179,11 @@ const Footer = () => {
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        >Advertising<Link><LaunchIcon className='Launch'/></Link>
+        >Advertising<LaunchIcon className='Launch'/>
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        >Jobs<Link><LaunchIcon className='Launch'/></Link>
+        >Jobs<LaunchIcon className='Launch'/>
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
@@ -196,7 +195,7 @@ const Footer = () => {
         </a>
         <a href="https://help.imdb.com/imdb" 
         target="_blank" 
-        ><Link><RuleFolderIcon className='Launch2'/></Link>Your Ads Privacy Choices
+        ><RuleFolderIcon className='Launch2'/>Your Ads Privacy Choices
         </a>
         </section>
         <section className='Amazon'>
@@ -204,9 +203,9 @@ const Footer = () => {
         <img className='AmazonImg' src="https://m.media-amazon.com/images/G/01/AdProductsWebsite/images/AUX/02_amazon_logo_RGB_SQUID._TTW_.png"></img>
         <h4>company</h4>
         </section>
-        <section className='Copyr'>
-        <Link><CopyrightIcon className="icon-white"/>1990-2025 by IMDb.com, Inc.</Link>
-        </section>
+        <div className='Copyr'>
+        <CopyrightIcon className="icon-white"/><span>1990-2025 by IMDb.com, Inc.</span>
+        </div>
        </StyledFooter>
      );
 }
