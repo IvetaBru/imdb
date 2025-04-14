@@ -3335,7 +3335,7 @@
 	"users": [
 		{
 			"id": "d56fgs4",
-			"name": "John Doe",
+			"username": "John Doe",
 			"email": "john.doe@example.com",
 			"password": "$2b$10$KKf4TKE0/F8pRimjSkir3ONfHx6XZ9qMPQ1jSsvWvNlBEJTb5Wwai",
 			"passwordText": "Sl@pta52",
@@ -3343,7 +3343,7 @@
 		},
 		{
 			"id": "dgs445gf",
-			"name": "Jane Smith",
+			"username": "Jane Smith",
 			"email": "jane.smith@example.com",
 			"password": "$2b$10$CPpK5VWfW.eCJrzXLNnMcuabzYMuBm26b9a4fhRXDTaxo8cntRGd.",
 			"passwordText": "Huey654&jaD",

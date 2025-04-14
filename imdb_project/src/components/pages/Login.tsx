@@ -13,74 +13,64 @@ const Page = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 const Card = styled.div`
-  width: 350px;
+  width: 320px;
   border: 1px solid #d5d9d9;
   border-radius: 8px;
-  padding: 20px 26px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  background-color: #ffffff;
+  padding: 20px 25px;
+  color: black;
 `;
 
 const LogoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  padding-top: 10px;
+  margin-bottom: 10px;
 `;
 
 const LogoImage = styled.img`
   height: 48px;
+  margin-top: 15px;
 `;
 
 const Title = styled.h2`
-  /* font-size: 21px; */
   font-weight: 400;
-  margin-bottom: 18px;
-  color: black;
+  margin-top: 0;
+  margin-bottom: 10px;
 `;
 
 const Label = styled.label`
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
-  display: block;
-  margin-bottom: 4px;
-  color: black;
 `;
 
 const StyledField = styled(Field)`
   width: 100%;
-  padding: 8px;
-  font-size: 13px;
+  padding: 6px;
+  font-size: 12px;
   border: 1px solid #a6a6a6;
   border-radius: 3px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 `;
 
 const Assistance = styled.a`
-  display: block;
-  text-align: right;
   font-size: 12px;
-  color: #007185;
+  color: #2162a1;
   text-decoration: none;
-  margin-top: -10px;
-  margin-bottom: 20px;
+  font-weight: 500;
   &:hover {
     text-decoration: underline;
+    color: #2162a1;
   }
 `;
 
 const SignInButton = styled.button`
-  background-color: #e7c266;
+  background-color: #ffd814;
   border: none;
   border-radius: 20px;
   width: 100%;
-  padding: 9px 0;
-  font-weight: bold;
-  font-size: 13px;
+  padding: 7px 0;
+  font-size: 12px;
   margin-top: 10px;
   cursor: pointer;
   &:hover {
@@ -93,7 +83,6 @@ const CheckboxRow = styled.div`
   align-items: center;
   font-size: 12px;
   margin-top: 16px;
-  color: black;
 `;
 
 const Checkbox = styled(Field)`
@@ -106,26 +95,97 @@ const ErrorText = styled.div`
   margin-bottom: 8px;
 `;
 
+const PasswordRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+`;
+
+const OrDivider = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 24px 0 12px;
+  font-size: 11px;
+  color: #666;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid #ccc;
+    margin: 0 8px;
+  }
+`;
+
+const CreateButton = styled.button`
+  width: 100%;
+  padding: 7px 0;
+  font-size: 12px;
+  color: black;
+  background-color: white;
+  border: 1px solid #a6a6a6;
+  border-radius: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+const FooterDivider = styled.hr`
+  width: 98%;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 24px 0 12px;
+`;
+
+const Footer = styled.div`
+  text-align: center;
+  font-size: 11px;
+  color: #555;
+`;
+
+const FooterLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 4px;
+
+  a {
+    color: #2162a1;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const Copyright = styled.div`
+  color: #888;
+  font-size: 10px;
+`;
+
 const Login = () => {
   const { users, setLoggedInUser } = useContext(UsersContext) as UsersContextTypes;
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const initialValues: LoginValues = {
-    username: '', // This will represent email now
+    email: '',
     password: '',
     stayLoggedIn: false,
   };
 
   const validationSchema = Yup.object({
-    username: Yup.string().email('Please enter a valid email').required('Email is required'),
+    email: Yup.string().email('Please enter a valid email').required('Email is required'),
     password: Yup.string().required('Password is required'),
   });
 
   const handleSubmit = (values: LoginValues, { setSubmitting }: FormikHelpers<LoginValues>) => {
     const foundUser = users.find(
       (user) =>
-        user.email === values.username && bcrypt.compareSync(values.password, user.password)
+        user.email === values.email && bcrypt.compareSync(values.password, user.password)
     );
 
     if (foundUser) {
@@ -143,12 +203,13 @@ const Login = () => {
 
   return (
     <Page>
-        <LogoWrapper>
-          <LogoImage
-            src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png"
-            alt="IMDb logo"
-          />
-        </LogoWrapper>
+      <LogoWrapper>
+        <LogoImage
+          src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png"
+          alt="IMDb logo"
+        />
+      </LogoWrapper>
+
       <Card>
         <Title>Sign in</Title>
         <Formik
@@ -158,15 +219,20 @@ const Login = () => {
         >
           {({ isSubmitting }) => (
             <Form>
-              <Label htmlFor="username">Email address</Label>
-              <StyledField type="email" name="username" />
-              <ErrorMessage name="username" component={ErrorText} />
+              <div>
+                <Label htmlFor="email">Email or mobile phone number</Label>
+                <StyledField type="email" name="email" />
+                <ErrorMessage name="email" component={ErrorText} />
+              </div>
 
-              <Label htmlFor="password">Password</Label>
-              <StyledField type="password" name="password" />
-              <ErrorMessage name="password" component={ErrorText} />
-              <Assistance href="#">Password assistance</Assistance>
-
+              <div>
+                <PasswordRow>
+                  <Label htmlFor="password">Password</Label>
+                  <Assistance href="#">Password assistance</Assistance>
+                </PasswordRow>
+                <StyledField type="password" name="password" />
+                <ErrorMessage name="password" component={ErrorText} />
+              </div>
 
               <SignInButton type="submit" disabled={isSubmitting}>
                 Sign in
@@ -178,10 +244,31 @@ const Login = () => {
               </CheckboxRow>
 
               {error && <ErrorText>{error}</ErrorText>}
+
+              <OrDivider>
+                <span>New to IMDb?</span>
+              </OrDivider>
+
+              <CreateButton type="button" onClick={() => navigate('/register')}>
+                Create your IMDb account
+              </CreateButton>
             </Form>
           )}
         </Formik>
       </Card>
+
+      <FooterDivider />
+
+      <Footer>
+        <FooterLinks>
+          <a href="#">Help</a>
+          <a href="#">Conditions of Use</a>
+          <a href="#">Privacy Notice</a>
+        </FooterLinks>
+        <Copyright>
+          © 1996–2025, Amazon.com, Inc. or its affiliates
+        </Copyright>
+      </Footer>
     </Page>
   );
 };

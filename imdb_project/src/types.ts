@@ -7,11 +7,9 @@ export type User = {
   profilePicture?: string;
   role: string         
 }
-
 export type ChildrenElementType = {
   children: React.ReactElement
 }
-
 export type UsersReducerActionTypes = 
 { type: 'setUsers', data: User[]} |
 { type: 'addUser', newUser: User } |
@@ -23,8 +21,8 @@ export type UsersContextTypes = {
   users: User[],
   dispatch: React.ActionDispatch<[UsersReducerActionTypes]>
 }
-export type LoginValues = {
-  username: string;
+export interface LoginValues {
+  email: string;
   password: string;
   stayLoggedIn: boolean;
-};
+}
