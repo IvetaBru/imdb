@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import styled from 'styled-components';
 import MenuIcon from '@mui/icons-material/Menu';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
+import AddIcon from '@mui/icons-material/Add';
 
 const StyledHeader = styled.header`
     margin: 0;
@@ -63,7 +64,7 @@ const StyledHeader = styled.header`
                     }
                 }
             }
-            >.watchlist{
+            >.watchlist, .addMovie{
                 background-color: #1a1a1a;
                 padding: 5px 15px;
                 border: none;
@@ -87,7 +88,7 @@ const StyledHeader = styled.header`
                     text-decoration: none;
                 }
             }
-            >.menu:hover, .pro:hover, .language:hover, .login:hover, .watchlist:hover{
+            >.menu:hover, .pro:hover, .language:hover, .login:hover, .watchlist:hover, .addMovie:hover{
                 background-color: #252525;
                 border-radius: 15px;
                 border: none;
@@ -124,6 +125,7 @@ const Header = () => {
                 </div>
                 <div>
                     <button className='watchlist'><Link to='/watchlist'><BookmarkAddIcon />Watchlist</Link></button>
+                    <button className='addMovie'><Link to='addMovie'><AddIcon /></Link></button>
                     <button className='login'><Link to='/login'>Sign In</Link></button>
                     <button className='language'>EN</button>
                 </div>

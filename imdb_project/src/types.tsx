@@ -1,3 +1,5 @@
+import { ActionTypes } from "./contexts/MoviesContext"
+
 export type ChildrenProp = {
     children: React.ReactElement
 }
@@ -9,7 +11,7 @@ type IMDBRating = {
 
 type IMDBData = {
     totalScore: number,
-    userRatings: IMDBRating[]
+    userRatings?: IMDBRating[]
 }
 
 type MoviePopularity = {
@@ -27,12 +29,12 @@ type MovieVideos = {
     cutscenes: string[]
 }
 
-type MovieWriters = {
+type MovieWriter = {
     name: string,
     role: string
 }
 
-type MovieActors = {
+type MovieActor = {
     name: string,
     character: string[],
     actorPhoto: string
@@ -40,8 +42,8 @@ type MovieActors = {
 
 type CastAndCrew = {
     director: string,
-    writers: MovieWriters,
-    actors: MovieActors
+    writers: MovieWriter[],
+    actors: MovieActor[]
 }
 
 type MovieReviews = {
@@ -57,17 +59,18 @@ export type Movie = {
     eirinCategory: string,
     length: number,
     IMDB: IMDBData,
-    popularity: MoviePopularity,
+    popularity?: MoviePopularity,
     photos: MoviePhotos,
     videos: MovieVideos,
     genres: string[],
     description: string,
     castAndCrew: CastAndCrew,
-    reviews: MovieReviews
+    reviews?: MovieReviews
 }
 
 export type MoviesContextTypes = {
     movies: Movie[],
+    dispatch: React.ActionDispatch<[action: ActionTypes]>
     addNewMovie: (newMovie: Movie) => void,
     findProduct: (id: Movie["id"]) => Movie | string
 }

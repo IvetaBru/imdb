@@ -2,7 +2,7 @@ import { createContext, useReducer, useEffect } from "react";
 
 import { ChildrenProp, Movie, MoviesContextTypes } from "../types";
 
-type ActionTypes = 
+export type ActionTypes = 
 { type: 'setData', data: Movie[]} |
 { type: 'addMovie', newMovie: Movie } 
 
@@ -57,6 +57,7 @@ const MoviesProvider = ({ children }: ChildrenProp) => {
         <MoviesContext.Provider
             value={{
                 movies,
+                dispatch,
                 addNewMovie,
                 findProduct
             }}
