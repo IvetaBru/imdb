@@ -206,10 +206,12 @@ const Register = () => {
   return (
     <Page>
       <LogoWrapper>
-        <LogoImage
-          src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png"
-          alt="IMDb logo"
-        />
+        <Link to="/">
+          <LogoImage
+            src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png"
+            alt="IMDb logo"
+          />
+        </Link>
       </LogoWrapper>
 
       <Card>
