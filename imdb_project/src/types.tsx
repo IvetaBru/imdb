@@ -29,12 +29,12 @@ type MovieVideos = {
     cutscenes: string[]
 }
 
-type MovieWriters = {
+type MovieWriter = {
     name: string,
     role: string
 }
 
-type MovieActors = {
+type MovieActor = {
     name: string,
     character: string[],
     actorPhoto: string
@@ -42,8 +42,8 @@ type MovieActors = {
 
 type CastAndCrew = {
     director: string,
-    writers: MovieWriters,
-    actors: MovieActors
+    writers: MovieWriter[],
+    actors: MovieActor[]
 }
 
 type MovieReviews = {
