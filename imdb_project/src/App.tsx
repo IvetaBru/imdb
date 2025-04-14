@@ -11,9 +11,9 @@ const App = () => {
     <>
     <Routes>
       <Route path="/register" element={<Register />} />
+      <Route path="login" element={<Login />} />
       <Route path="" element={<MainOutlet />}>
         <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
         <Route path="addMovie" element={<AddNewMovie />}/>
       </Route>
     </Routes>
