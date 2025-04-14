@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { v4 as generateID} from 'uuid';
 import * as Yup from 'yup';
 import styled from "styled-components";
-import { Formik} from "formik";
+import { Formik, Form, Field, ErrorMessage} from "formik";
 
 import MoviesContext from "../../contexts/MoviesContext";
 import { Movie, MoviesContextTypes } from "../../types";
@@ -156,6 +156,18 @@ const AddNewMovie = () => {
                 onSubmit={handleSubmit}
                 validationSchema={validSchema}
             >
+                <Form>
+                    <div>
+                        <label htmlFor="title">Title:</label>
+                        <Field 
+                            name="title"
+                            id="title"
+                            placeholder="Type movie title..."
+                            type="text" 
+                        />
+                        <ErrorMessage name="title" component="span" className="error" />
+                    </div>  
+                </Form>
             </Formik>
         </StyledSection>
      );
