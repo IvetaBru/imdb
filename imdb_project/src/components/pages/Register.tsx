@@ -6,7 +6,7 @@ import { v4 as generateID } from 'uuid';
 import bcrypt from 'bcryptjs';
 import styled from 'styled-components';
 
-import UsersContext from '../../context/UsersContext';
+import UsersContext from '../../contexts/UsersContext';
 import { UsersContextTypes, User } from '../../types';
 
 const Page = styled.div`

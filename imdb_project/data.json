@@ -3348,6 +3348,14 @@
       "password": "$2b$10$lOKPZLojUcx7RU8YSU6xR.xeavLpiLlxxV3HMFgaJlT2wVo5FYlmu",
       "passwordText": "Tomas123!",
       "role": "customer"
+    },
+    {
+      "id": "0591fe2e-57e4-4bba-a87e-cb59cd58c944",
+      "username": "TomasA",
+      "email": "john.doe@example.com",
+      "password": "$2b$10$62hqUhcSWTa2X4N/mZ6rGOzQcDrJ3SzFbYpAL0pX4Ie6QsrSAhZXy",
+      "passwordText": "Tomas123!",
+      "role": "customer"
     }
   ]
 }

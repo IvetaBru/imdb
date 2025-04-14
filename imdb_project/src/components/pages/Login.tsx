@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import * as Yup from 'yup';
 import styled from 'styled-components';
 
-import UsersContext from '../../context/UsersContext';
+import UsersContext from '../../contexts/UsersContext';
 import { UsersContextTypes, LoginValues } from '../../types';
 
 const Page = styled.div`
