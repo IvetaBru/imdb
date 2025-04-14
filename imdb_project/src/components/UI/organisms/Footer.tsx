@@ -7,9 +7,13 @@ import XIcon from '@mui/icons-material/X';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import LaunchIcon from '@mui/icons-material/Launch';
+import RuleFolderIcon from '@mui/icons-material/RuleFolder';
+import CopyrightIcon from '@mui/icons-material/Copyright';
 
 const StyledFooter = styled.footer`
-  
+  footer{
+    height: ;
+  }
   .Display{
     display: flex;
     justify-content: space-between;
@@ -57,16 +61,58 @@ const StyledFooter = styled.footer`
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: larger;
-
+  gap: 2px;
+  font-size: medium;
+}
+.Tekstas{
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding-top: 20px;
 }
 .Launch {
-  font-size: 16px; /* arba 18px – pagal skonį */
+  font-size: 16px; 
   color: white;
 }
-.Button {
-  pointer-events: none;
+.Launch2 {
+  font-size: 25px;
+  color: #00aaff;
+}
+.Amazon{
+  display: flex;
+  /* justify-content: content; */
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+}
+.Amazon img {
+  width: 50px;
+  height: auto;
+}
+.AmazonImg{
+  filter: brightness(0) invert(1);
+}
+.Copyr .icon-white{
+  color: white;
+}
+.Copyr {
+  display: flex;
+  justify-content: center; 
+  align-items: center;       
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+.Copyr a, .Copyr .icon-white {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 `
 const Footer = () => {
@@ -100,6 +146,56 @@ const Footer = () => {
         target="_blank" 
         >Help<Link><LaunchIcon className='Launch'/></Link>
         </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >Side Index<Link><LaunchIcon className='Launch'/></Link>
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >IMDbPro<Link><LaunchIcon className='Launch'/></Link>
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >Box Office Mojo<Link><LaunchIcon className='Launch'/></Link>
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >License IMDb Data<Link><LaunchIcon className='Launch'/></Link>
+        </a>
+        </section>
+        <section className='Tekstas'>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >Press Room
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >Advertising<Link><LaunchIcon className='Launch'/></Link>
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >Jobs<Link><LaunchIcon className='Launch'/></Link>
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >Conditions of Use
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        >Privacy Policy
+        </a>
+        <a href="https://help.imdb.com/imdb" 
+        target="_blank" 
+        ><Link><RuleFolderIcon className='Launch2'/></Link>Your Ads Privacy Choices
+        </a>
+        </section>
+        <section className='Amazon'>
+          <h4>an</h4>
+        <img className='AmazonImg' src="https://m.media-amazon.com/images/G/01/AdProductsWebsite/images/AUX/02_amazon_logo_RGB_SQUID._TTW_.png"></img>
+        <h4>company</h4>
+        </section>
+        <section className='Copyr'>
+        <Link><CopyrightIcon className="icon-white"/>1990-2025 by IMDb.com, Inc.</Link>
         </section>
        </StyledFooter>
      );
