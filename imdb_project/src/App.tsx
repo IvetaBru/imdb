@@ -4,6 +4,7 @@ import MainOutlet from "./components/outlets/MainOutlet";
 import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import AddNewMovie from "./components/pages/AddNewMovie";
+import User from "./components/pages/User";
 
 const App = () => {
   
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="" element={<MainOutlet />}>
         <Route index element={<Home />} />
         <Route path="addMovie" element={<AddNewMovie />}/>
+        <Route path="user" element={<User />} />
       </Route>
     </Routes>
     </>
