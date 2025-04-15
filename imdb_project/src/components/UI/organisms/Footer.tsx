@@ -1,4 +1,3 @@
-import { Link } from 'react-router';
 import styled from 'styled-components';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
