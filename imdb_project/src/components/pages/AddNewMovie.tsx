@@ -9,7 +9,80 @@ import { Movie, MoviesContextTypes } from "../../types";
 import { useNavigate } from "react-router";
 
 const StyledSection = styled.section`
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 300px;
+
+    button, .submit{
+        width: 120px;
+        padding: 5px 0;
+        border: none;
+        border-radius: 5px;
+        align-self: left;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .remove:hover{
+        background-color: #ad2f2f;
+    }
+    button:hover{
+        background-color: #f1dd23;
+        color: #1a1a1a;
+    }
+    .submit{
+        align-self: center;
+    }
+    .submit:hover{
+        background-color: #1eaf73;
+        color: #1a1a1a;
+    }
+    .addChar{
+        width: 30px;
+        
+    }
+    span{
+        color: #ad2f2f;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    .label{
+        margin-right: 8px;
+    }
+    .container{
+        min-width: 50%;
+        background-color: #1a1a1a;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        
+        >div{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px;
+            font-weight: 700;
+            border-radius: 10px;
+        }
+        >.genre{
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        >.writers, .actors {
+            >div{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                >div{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }    
+        }
+    }
 `
 
 const AddNewMovie = () => {
@@ -146,8 +219,9 @@ const AddNewMovie = () => {
                     role: Yup.string()
                       .required('Writer role is required')
                       .trim(),
-                })
-            ).min(1, 'At least one writer is required'),
+                    })
+            ).min(1, 'At least one writer is required')
+            .required('Writers are required'),
             actors: Yup.array().of(
                 Yup.object({
                     name: Yup.string()
@@ -172,7 +246,7 @@ const AddNewMovie = () => {
                 onSubmit={handleSubmit}
                 validationSchema={validSchema}
             >
-                <Form>
+                <Form className="container">
                     <div>
                         <label htmlFor="title">Title:</label>
                         <Field 
@@ -229,13 +303,13 @@ const AddNewMovie = () => {
                         {({ push, remove, form }) => (
                             <div>
                             <label>Posters:</label>
-                            {form.values.photos.poster.map((poster: string, index: number) => (
+                            {form.values.photos.poster.map((_: string, index: number) => (
                                 <div key={index}>
                                 <Field
                                     name={`photos.poster[${index}]`}
                                     placeholder="Enter poster image URL"
                                 />
-                                <button type="button" onClick={() => remove(index)}>Remove</button>
+                                <button type="button" onClick={() => remove(index)} className="remove">Remove</button>
                                 <ErrorMessage name={`photos.poster[${index}]`} component="span" className="error" />
                                 </div>
                             ))}
@@ -247,13 +321,13 @@ const AddNewMovie = () => {
                         {({ push, remove, form }) => (
                             <div>
                             <label>Cutscenes:</label>
-                            {form.values.photos.cutscenes.map((scene: string, index: number) => (
+                            {form.values.photos.cutscenes.map((_: string, index: number) => (
                                 <div key={index}>
                                 <Field
                                     name={`photos.cutscenes[${index}]`}
                                     placeholder="Enter cutscene image URL"
                                 />
-                                <button type="button" onClick={() => remove(index)}>Remove</button>
+                                <button type="button" onClick={() => remove(index)} className="remove">Remove</button>
                                 <ErrorMessage name={`photos.cutscenes[${index}]`} component="span" className="error" />
                                 </div>
                             ))}
@@ -265,13 +339,13 @@ const AddNewMovie = () => {
                         {({ push, remove, form }) => (
                             <div>
                             <label>Trailers:</label>
-                            {form.values.videos.trailers.map((trailer: string, index: number) => (
+                            {form.values.videos.trailers.map((_: string, index: number) => (
                                 <div key={index}>
                                 <Field
                                     name={`videos.trailers[${index}]`}
                                     placeholder="Enter trailer video URL"
                                 />
-                                <button type="button" onClick={() => remove(index)}>Remove</button>
+                                <button type="button" onClick={() => remove(index)} className="remove">Remove</button>
                                 <ErrorMessage name={`videos.trailers[${index}]`} component="span" className="error" />
                                 </div>
                             ))}
@@ -283,13 +357,13 @@ const AddNewMovie = () => {
                         {({ push, remove, form }) => (
                             <div>
                             <label>Trailer cutscenes:</label>
-                            {form.values.videos.cutscenes.map((scene: string, index: number) => (
+                            {form.values.videos.cutscenes.map((_: string, index: number) => (
                                 <div key={index}>
                                 <Field
                                     name={`videos.cutscenes[${index}]`}
                                     placeholder="Enter trailer cutscene URL"
                                 />
-                                <button type="button" onClick={() => remove(index)}>Remove</button>
+                                <button type="button" onClick={() => remove(index)} className="remove">Remove</button>
                                 <ErrorMessage name={`videos.cutscenes[${index}]`} component="span" className="error" />
                                 </div>
                             ))}
@@ -307,7 +381,7 @@ const AddNewMovie = () => {
                         />
                         <ErrorMessage name="genres" component="span" className="error" />
                     </div>
-                    <div>
+                    <div className="genre">
                         <label>
                         <Field type="checkbox" name="genres" value="Action" />
                         Action
@@ -363,53 +437,62 @@ const AddNewMovie = () => {
                         />
                         <ErrorMessage name="castAndCrew.director" component="span" className="error" />
                     </div>
+                    <div className="writers">
                     <FieldArray name="castAndCrew.writers">
                         {({ push, remove, form }) => (
                             <div>
                             <label>Writers:</label>
-                            {form.values.castAndCrew.writers.map((writer:string, index:number) => (
+                            {form.values.castAndCrew.writers.map((_:string, index:number) => (
                                 <div key={index}>
                                 <Field name={`castAndCrew.writers[${index}].name`} placeholder="Writer name" />
+                                <ErrorMessage name={`castAndCrew.writers[${index}].name`} component="span" className="error"/>
                                 <Field name={`castAndCrew.writers[${index}].role`} placeholder="Writer role" />
-                                <button type="button" onClick={() => remove(index)}>Remove</button>
+                                <ErrorMessage name={`castAndCrew.writers[${index}].role`} component="span" className="error"/>
+                                <button type="button" onClick={() => remove(index)} className="remove">Remove</button>
                                 </div>
                             ))}
                             <button type="button" onClick={() => push({ name: '', role: '' })}>Add Writer</button>
                             </div>
                         )}
                     </FieldArray>
+                    </div>
+                    <div className="actors">
                     <FieldArray name="castAndCrew.actors">
                         {({ push, remove, form }) => (
                             <div>
                             <label>Actors:</label>
-                            {form.values.castAndCrew.actors.map((actor:string, index:number) => (
+                            {form.values.castAndCrew.actors.map((_:string, index:number) => (
                                 <div key={index}>
                                 <Field name={`castAndCrew.actors[${index}].name`} placeholder="Actor name" />
+                                <ErrorMessage name={`castAndCrew.actors[${index}].name`} component="span" className="error"/>
                                 <Field name={`castAndCrew.actors[${index}].actorPhoto`} placeholder="Actor photo URL" />
+                                <ErrorMessage name={`castAndCrew.actors[${index}].name`} component="span" className="error"/>
 
                                 <FieldArray name={`castAndCrew.actors[${index}].character`}>
                                     {({ push: pushChar, remove: removeChar, form }) => (
                                     <div>
-                                        <label>Characters:</label>
-                                        {form.values.castAndCrew.actors[index].character.map((char:string, charIndex:number) => (
+                                        <label className="label">Characters:</label>
+                                        {form.values.castAndCrew.actors[index].character.map((_:string, charIndex:number) => (
                                         <div key={charIndex}>
                                             <Field name={`castAndCrew.actors[${index}].character[${charIndex}]`} placeholder="Character name" />
-                                            <button type="button" onClick={() => removeChar(charIndex)}>Remove</button>
+                                            <ErrorMessage name={`castAndCrew.actors[${index}].character[${charIndex}]`} component="span" className="error"/>
+                                            <button type="button" onClick={() => removeChar(charIndex)} className="remove">Remove</button>
                                         </div>
                                         ))}
-                                        <button type="button" onClick={() => pushChar('')}>Add Character</button>
+                                        <button type="button" onClick={() => pushChar('')} className="addChar">+</button>
                                     </div>
                                     )}
                                 </FieldArray>
 
-                                <button type="button" onClick={() => remove(index)}>Remove Actor</button>
+                                <button type="button" onClick={() => remove(index)} className="remove">Remove Actor</button>
                                 </div>
                             ))}
                             <button type="button" onClick={() => push({ name: '', character: [''], actorPhoto: '' })}>Add Actor</button>
                             </div>
                         )}
                     </FieldArray>
-                <input type="submit" value="Add Movie" className="button"/>
+                    </div>
+                <input type="submit" value="Add Movie" className="submit"/>
                 </Form>
             </Formik>
         </StyledSection>
