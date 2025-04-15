@@ -1,8 +1,14 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import MenuIcon from '@mui/icons-material/Menu';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import AddIcon from '@mui/icons-material/Add';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+import UsersContext from '../../../contexts/UsersContext';
+import { UsersContextTypes } from '../../../types';
 
 const StyledHeader = styled.header`
     margin: 0;
@@ -12,17 +18,17 @@ const StyledHeader = styled.header`
     line-height: 0;
     display: flex;
     justify-content: center;
-    
+  
     >nav{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
         >div{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 5px;
             >a{
                 >img{
                     height: 30px;
@@ -66,7 +72,7 @@ const StyledHeader = styled.header`
             }
             >.watchlist, .addMovie{
                 background-color: #1a1a1a;
-                padding: 5px 15px;
+                padding: 5px 10px;
                 border: none;
                 >a{
                     display: flex;
@@ -88,7 +94,7 @@ const StyledHeader = styled.header`
                     text-decoration: none;
                 }
             }
-            >.menu:hover, .pro:hover, .language:hover, .login:hover, .watchlist:hover, .addMovie:hover{
+            >.menu:hover, .pro:hover, .language:hover, .login:hover, .watchlist:hover, .addMovie:hover, .logout:hover, .avatar:hover{
                 background-color: #252525;
                 border-radius: 15px;
                 border: none;
@@ -97,11 +103,23 @@ const StyledHeader = styled.header`
         >div:last-child{
             padding-left: 5px;
             border-left: #474646 2px solid;
+
+            >.logout, .avatar{
+                padding: 3px 5px;
+                font-size: 35px;
+            }
+            >span{
+                font-weight: 600;
+            }
         }
     }
 `
 
 const Header = () => {
+
+    const { loggedInUser, setLoggedInUser } = useContext(UsersContext) as UsersContextTypes;
+    const navigate = useNavigate();
+
     return ( 
        <StyledHeader>
         <nav>
@@ -124,10 +142,52 @@ const Header = () => {
                     </button>
                 </div>
                 <div>
-                    <button className='watchlist'><Link to='/watchlist'><BookmarkAddIcon />Watchlist</Link></button>
-                    <button className='addMovie'><Link to='addMovie'><AddIcon /></Link></button>
-                    <button className='login'><Link to='/login'>Sign In</Link></button>
-                    <button className='language'>EN</button>
+                {
+                    loggedInUser ? (loggedInUser.role === 'admin' ? 
+                    (
+                    <>
+                        <button className='addMovie'><Link to='addMovie'><AddIcon /></Link></button>
+                        <AccountCircleIcon 
+                        onClick={() => navigate("/")}
+                        className='avatar'
+                        />
+                        <span>{loggedInUser.username}</span>
+                        <LogoutIcon 
+                        onClick={() => {
+                            setLoggedInUser(null);
+                            navigate("/")
+                        }}
+                        className='logout'
+                        />
+                    </>
+                    ) : (
+                    <>
+                        <button className='watchlist'><Link to='/watchlist'><BookmarkAddIcon />Watchlist</Link></button>
+                        <AccountCircleIcon 
+                        onClick={() => navigate("/")}
+                        className='avatar'
+                        />
+                        <span>{loggedInUser.username}</span>
+                        <LogoutIcon 
+                        onClick={() => {
+                            setLoggedInUser(null);
+                            navigate("/")
+                        }}
+                        className='logout'
+                        />
+                    </>
+                    )) : (
+                    <>
+                    <button className='watchlist'>
+                        <Link to='login'><BookmarkAddIcon />Watchlist</Link>
+                    </button>
+                    <button className='login'>
+                        <Link to='/login'>Sign In</Link>
+                    </button>
+                    </>
+                    )
+                }
+                <button className='language'>EN</button>
                 </div>
         </nav>
        </StyledHeader>
