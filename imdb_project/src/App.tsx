@@ -4,6 +4,8 @@ import MainOutlet from "./components/outlets/MainOutlet";
 import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import AddNewMovie from "./components/pages/AddNewMovie";
+import SpecificCard from "./components/pages/SpecificCard";
+import CastAndCrew from "./components/pages/CastAndCrew";
 
 const App = () => {
   
@@ -15,10 +17,11 @@ const App = () => {
       <Route path="" element={<MainOutlet />}>
         <Route index element={<Home />} />
         <Route path="addMovie" element={<AddNewMovie />}/>
+        <Route path="movie/:id" element={<SpecificCard />}/>
+        <Route path="castAndCrew" element={<CastAndCrew />}/>
       </Route>
     </Routes>
     </>
   )
 }
-
 export default App;
