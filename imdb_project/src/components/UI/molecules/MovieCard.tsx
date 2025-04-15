@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import {Link, useNavigate} from "react-router";
-import {Movie} from "../../../types";
 
 import { TurnedIn, Add, Star, StarOutline  } from '@mui/icons-material';
 
@@ -40,7 +39,7 @@ const AddSymbol = styled(Add)`
 const StyledMovieCard = styled.div`
  #container
  { 
-  width: 180px;
+  width: 200px;
   border: 1px solid black;
   border-radius: 5px;
   flex: 1;
@@ -51,10 +50,11 @@ const StyledMovieCard = styled.div`
   {
     color: #0ab3dd;
   }
+
   > a
   {
     text-decoration: none;
-    color: white;
+    color: white; 
 
     > img{
       width: 100%;
@@ -63,11 +63,25 @@ const StyledMovieCard = styled.div`
     }
   }  
   
-  > .filmName 
+
+  > div.link 
   {
-    margin-left: 18px;
-    margin-top: 12px;
+     padding: 5px 5px;
+    min-height: 100px;
+   
+    > .filmName 
+    {
+      /* margin: 10px 18px; */
+      /* margin-top: 12px; */
+      padding: 5px 15px;
+      /* text-indent: none; */
+
+      display: block;
+    width: auto;
+    text-indent: 0;
+    }
   }
+
   > div.stars
     {
       display: flex;
@@ -116,14 +130,17 @@ const StyledMovieCard = styled.div`
 
           > span 
           {
-             margin-right: 5px;
-          }
-        }
+            margin-right: 10px;
+          } 
+        } 
     }
  }
 `;
 
-const MovieCard = () => {
+// TODO: change without error: any -> Props ?
+const MovieCard = ({data} : any)=> {
+
+
   return ( 
     <StyledMovieCard>
       <div id="container">
@@ -131,18 +148,20 @@ const MovieCard = () => {
         <AddSymbol className={'override'}/>
         
         <a href="">
-          <img src="http://pngimg.com/d/mario_PNG125.png" alt="" />
+          <img src={data.photos.poster[0]} alt="" />
         </a>
 
         <div className="stars">
           <div>
             <Star className={'star'}/>
-            <h3>6.6</h3>              
+            <h3>{data.IMDB.totalScore}</h3>              
           </div>
           <StarOutline className={'starEmpty'}/>  
         </div>
 
-        <a href="" className="filmName">Linkas</a>
+        <div className="link">
+          <a href="" className="filmName">{data.title}</a>
+        </div>
 
         <div className="more">
           <div id="button">      

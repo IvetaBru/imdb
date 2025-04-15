@@ -3,13 +3,14 @@ import styled from "styled-components";
 import MovieCard from "../UI/molecules/MovieCard";
 import { ArrowForwardIos } from '@mui/icons-material';
 
-// TODO context
-// import MerchContext from "../../contexts/MerchContext";
+
+import useMoviesContext from "../../contexts/MoviesContext";
+import { MoviesContextTypes } from "../../types";
 
 const StyledSection = styled.section`
  
   padding: 0 18px;
-  margin: 30px 0;
+  margin: 30px 15px;
   
   > .headerContainer
   {
@@ -22,10 +23,16 @@ const StyledSection = styled.section`
 
   > .cardsContainer
   {
-    display: flex;
-    padding: 0 16px;
+    /* display: flex;
+    
+    */
+
+    display: grid;
+    grid-template-columns: repeat(6, auto) ;
     gap: 15px;
-  }
+    padding: 0 16px;
+}
+  
 
 `;
 
@@ -43,36 +50,33 @@ const Arrow = styled(ArrowForwardIos)`
   }
 `;
 
-const Home = () => {
+const Home = () => {    
+   
+  const { movies } = useMoviesContext();
 
-    // TODO: context
-    // const { merch } = useContext(MerchContext)!;
-    // const { merch } = useContext(MerchContext) as MerchContextTypes;
+  // const movies = useContext(MoviesContext) as MoviesContextTypes; 
    
     return ( 
       <>
         <StyledSection>
-          {/* <h3 className="title">Top Picks</h3> */}
+           
           <div className="headerContainer">
           <StyledHeader>Top Picks</StyledHeader>
           <Arrow className={'override'} />
           </div>
           
           <div className="cardsContainer">
-            <MovieCard/>
-            <MovieCard/>
+            {
+              movies ?  
+              movies.map(movie => 
+                <MovieCard
+                  data={movie}
+                  key={movie.id}            
+                />)
+              : <p>Loading ... </p> 
+            }            
           </div>
-        </StyledSection>
-        <StyledSection>
-         <div className="headerContainer">
-            <StyledHeader>Top Picks</StyledHeader>
-            <Arrow className={'override'} />
-          </div>
-          <div className="cardsContainer">
-            <MovieCard/>
-            <MovieCard/>
-          </div>
-        </StyledSection>
+        </StyledSection>        
       </>   
      );
 }
