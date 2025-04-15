@@ -90,7 +90,7 @@ const StyledSection = styled.section`
                     }
                 }
                 >.rate, .chart{
-                    color: #0c9bd3;
+                    color: #4479c9;
                     font-size: 18px;
                     font-weight: 600;
                 }
@@ -112,7 +112,7 @@ const StyledSection = styled.section`
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
         gap: 5px;
-        margin: 10px auto;
+        margin: 20px auto;
     }
     .media{
         >iframe{
@@ -135,6 +135,92 @@ const StyledSection = styled.section`
             cursor: pointer;
             border-radius: 10px;
             border: none;
+        }
+    }
+    .castAndRatings{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 50px;
+        >.cast{
+            >span{
+                border: #585858 1px solid;
+                border-radius: 15px;
+                padding: 2px 10px;
+                margin-right: 10px;
+            }
+            >span:hover{
+                background-color: #ffffff14;
+                cursor: pointer;
+            }
+            >p:not(:first-of-type){
+                border-top: #585858 1px solid;
+                margin-top: 4px;
+                padding-top: 8px;
+                font-weight: 600;
+                >a{
+                    color: #4479c9;
+                    text-decoration: none;
+                    padding-left: 15px;
+                    >svg{
+                        color: #ffffff;
+                        font-size: 15px;
+                    }
+                    >.open{
+                        color: #4479c9;
+                    }
+                }
+                >a:hover{
+                    text-decoration: underline;
+                }
+                >svg{
+                    color: #ffffff;
+                    font-size: 15px;
+                }
+            }
+            .pro{
+                font-weight: 900;
+                color: white;
+                text-decoration: none;
+                letter-spacing: -1px;
+                >span{
+                    color: #2196da;
+                }
+            }
+        }
+    }
+    .ratings{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        >button{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 5px 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            >span{
+                font-size: 10px;
+                font-weight: 200;
+            }
+        }
+        >div{
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+            >span{
+                color: #4479c9;
+                >span{
+                    font-weight: 700;
+                }
+                .meta{
+                    padding: 0px 2px;
+                    background-color: #149c14;
+                    color: white;
+                }
+            }
         }
     }
 `
@@ -227,7 +313,7 @@ const SpecificCard = () => {
                 </div>
             </div>
             <div className="castAndRatings">
-                <div>
+                <div className="cast">
                     {
                     movie?.genres?.map((genre, index) => (
                     <span 
@@ -247,32 +333,32 @@ const SpecificCard = () => {
                                 >{writer.name}</a>
                             ))
                         }
-                    <ArrowForwardIosIcon />
                     </p>
-                    <Link to="castAndCrew"><p>Stars
+                    <p>Stars
                         {
                             movie?.castAndCrew.actors.slice(0,3).map((actor, index) => (
-                                <span
+                                <a href="#"
                                     key={index}
                                     className="writer"
-                                >{actor.name}</span>
+                                >{actor.name}</a>
                             ))
                         }
-                    <ArrowForwardIosIcon />
+                    <Link to="castAndCrew"><ArrowForwardIosIcon /></Link>
                     </p>
-                    </Link>
                     <p>
-                        <span>IMDb<span>Pro</span></span> 
-                        <a href="https://pro.imdb.com/title/tt7286456/?rf=cons_tt_atf&ref_=cons_tt_atf">
+                        <span className="pro">IMDb<span>Pro</span></span> 
+                        <a target="blank" href="https://pro.imdb.com/title/tt7286456/?rf=cons_tt_atf&ref_=cons_tt_atf">
                         See production info at IMDbPro 
-                        <OpenInNewIcon/></a>
+                        <OpenInNewIcon className="open"/></a>
                     </p>
                 </div>
-                <div>
+                <div className="ratings">
                     <button>Add to watch list <span>Added by 1.0M users</span></button>
-                    <span>{movie?.reviews?.users} User reviews</span>
-                    <span>{movie?.reviews?.critics} Critic reviews</span>
-                    <span><span>{movie?.reviews?.metascore}</span> Metascore</span>
+                    <div>
+                        <span> <span>{movie?.reviews?.users}</span> User reviews</span>
+                        <span> <span>{movie?.reviews?.critics}</span> Critic reviews</span>
+                        <span><span className="meta">{movie?.reviews?.metascore}</span> Metascore</span>
+                    </div>
                 </div>
             </div>
         </StyledSection>
