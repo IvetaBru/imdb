@@ -11,6 +11,7 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 
 const StyledSection = styled.section`
     padding: 10px 200px;
@@ -48,7 +49,94 @@ const StyledSection = styled.section`
         display: flex;
         justify-content: space-between;
     }
-
+    .info{
+        >div:first-child{
+            >h2{
+                font-size: 40px;
+                font-weight: 400;
+                margin: 0;
+                line-height: 1.2;
+            }
+            >span{
+                font-size: 12px;
+                font-weight: 500;
+                color: #b4b4b4;
+            }
+            >.eirin{
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+        >div:last-child{
+            display: flex;
+            gap: 20px;
+            padding-top: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            >div{
+                display: flex;
+                justify-content: center;
+                align-self: flex-start;
+                flex-direction: column;
+                >div{
+                    display: flex;
+                    align-items: center;
+                    >span{
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                    >.star{
+                        color: #f1dd23;
+                    }
+                }
+                >.rate, .chart{
+                    color: #0c9bd3;
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+                >.chart{
+                    color: #ffffff;
+                    >svg{
+                        color: #149c14;
+                    }
+                    >span{
+                        padding-left: 5px;
+                        font-size: 13px;
+                        color: #b4b4b4;
+                    }
+                }
+            }
+        }
+    }
+    .mediaContainer{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        gap: 5px;
+        margin: 10px auto;
+    }
+    .media{
+        >iframe{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        >img{
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+        }
+    }
+    .mediaButtons{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        >button{
+            height: 50%;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+        }
+    }
 `
 
 const SpecificCard = () => {
@@ -82,6 +170,12 @@ const SpecificCard = () => {
     const totalPhotos = 
     (movie?.photos.poster.length || 0) +
     (movie?.photos.cutscenes.length || 0)
+
+    const movieLength = (minutes: number) => {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return `${hours}h ${mins}min`;
+    };
     
     return ( 
         <StyledSection>
@@ -96,35 +190,41 @@ const SpecificCard = () => {
             </div> 
             <div className="info">
                 <div>
-                    {movie?.title}
+                    <h2>{movie?.title}</h2>
                     <span>{movie?.releaseYear}</span>
-                    <span>{movie?.eirinCategory}</span>
-                    <span>{movie?.length}</span>
+                    <span className="eirin">{movie?.eirinCategory}</span>
+                    <span>{movie?.length ? movieLength(movie.length) : null}</span>
                 </div>
                 <div>
-                    <div>IMDb RATING <StarIcon /> {movie?.IMDB.totalScore}/10 </div>
-                    <div>YOUR RATING <StarBorderIcon/> <span>Rate</span></div>
-                    <div>POPULARITY {movie?.popularity?.ranking}{movie?.popularity?.weeklyChange}</div>
+                    <div>IMDb RATING <div><StarIcon className="star"/> <span>{movie?.IMDB.totalScore}</span>/10</div> </div>
+                    <div>YOUR RATING <div className="rate"><StarBorderIcon/> Rate</div></div>
+                    <div>POPULARITY <div className="chart"><ShowChartIcon /> {movie?.popularity?.ranking}<span>{movie?.popularity?.weeklyChange}</span></div></div>
                 </div>
             </div>
-            <div>
-                <img src={movie?.photos.poster[0]} alt="poster" />
-                {
-                    embedUrl && (
-                    <iframe 
-                        width="640"
-                        height="360"
-                        src={embedUrl}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    >
-                    </iframe>
-                    )
-                }
-                <button><VideoLibraryIcon />{totalVideos} videos</button>
-                <button><PhotoLibraryIcon/>{totalPhotos} photos</button>
+            <div className="mediaContainer">
+                <div className="media">
+                    <img src={movie?.photos.poster[0]} alt="poster" />
+                </div>
+                <div className="media">
+                    {
+                        embedUrl && (
+                        <iframe 
+                            width="640"
+                            height="360"
+                            src={embedUrl}
+                            title="YouTube video player"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        >
+                        </iframe>
+                        )
+                    }
+                </div>
+                <div className="mediaButtons">
+                    <button><VideoLibraryIcon />{totalVideos} videos</button>
+                    <button><PhotoLibraryIcon/>{totalPhotos} photos</button>
+                </div>
             </div>
             <div className="castAndRatings">
                 <div>
