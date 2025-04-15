@@ -41,7 +41,7 @@ const StyledMovieCard = styled.div`
  #container
  { 
   width: 180px;
-  border: 1px solid white;
+  border: 1px solid black;
   border-radius: 5px;
   flex: 1;
 
@@ -113,6 +113,11 @@ const StyledMovieCard = styled.div`
           height: 40px;
           width: 150px;
           margin-bottom: 12px;
+
+          > span 
+          {
+             margin-right: 5px;
+          }
         }
     }
  }
