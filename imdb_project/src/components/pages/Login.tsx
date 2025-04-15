@@ -1,9 +1,11 @@
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 import bcrypt from 'bcryptjs';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import UsersContext from '../../contexts/UsersContext';
 import { UsersContextTypes, LoginValues } from '../../types';
@@ -83,10 +85,27 @@ const CheckboxRow = styled.div`
   align-items: center;
   font-size: 12px;
   margin-top: 16px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
 `;
 
 const Checkbox = styled(Field)`
   margin-right: 6px;
+`;
+
+const DetailsLink = styled.a`
+  color: #2162a1;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const ErrorText = styled.div`
@@ -204,10 +223,12 @@ const Login = () => {
   return (
     <Page>
       <LogoWrapper>
-        <LogoImage
-          src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png"
-          alt="IMDb logo"
-        />
+        <Link to="/">
+          <LogoImage
+            src="https://m.media-amazon.com/images/G/01/imdb/authportal/images/www_imdb_logo._CB667618033_.png"
+            alt="IMDb logo"
+          />
+        </Link>
       </LogoWrapper>
 
       <Card>
@@ -240,7 +261,9 @@ const Login = () => {
 
               <CheckboxRow>
                 <Checkbox type="checkbox" name="stayLoggedIn" />
-                <label htmlFor="stayLoggedIn">Keep me signed in. Details ▼</label>
+                <label htmlFor="stayLoggedIn">
+                  Keep me signed in. <DetailsLink href="#">Details</DetailsLink> <KeyboardArrowDownIcon fontSize="small" />
+                </label>
               </CheckboxRow>
 
               {error && <ErrorText>{error}</ErrorText>}
