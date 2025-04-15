@@ -191,7 +191,7 @@ const Header = () => {
                     </>
                     )
                 }
-                <button className='lightMode'><Link to="movie/:id"><LightModeIcon /></Link></button>
+                <button className='lightMode'><Link to="/movie/:id"><LightModeIcon /></Link></button>
                 </div>
         </nav>
        </StyledHeader>

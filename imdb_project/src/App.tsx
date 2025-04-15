@@ -17,7 +17,7 @@ const App = () => {
       <Route path="" element={<MainOutlet />}>
         <Route index element={<Home />} />
         <Route path="addMovie" element={<AddNewMovie />}/>
-        <Route path="movie/:id" element={<SpecificCard />}/>
+        <Route path="/movie/:id" element={<SpecificCard />}/>
         <Route path="castAndCrew" element={<CastAndCrew />}/>
       </Route>
     </Routes>
