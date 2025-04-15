@@ -6,6 +6,7 @@ import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import AddIcon from '@mui/icons-material/Add';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 import UsersContext from '../../../contexts/UsersContext';
 import { UsersContextTypes } from '../../../types';
@@ -43,24 +44,26 @@ const StyledHeader = styled.header`
                 border: none;
                 border-radius: 5px;
             }
-            >.menu, .language{
+            >.menu, .lightMode{
                 display: flex;
                 justify-content:center;
                 align-items: center;
-                padding: 8px 15px;
+                padding: 8px 10px;
                 gap: 5px;
                 font-weight: 700;
 
                 background-color: #1a1a1a;
                 border: none;
-                cursor: pointer;
+
+                >svg{
+                    font-size: 20px;
+                }
             }
             >.pro{
                 background-color: #1a1a1a;
                 border: none;
                 padding: 8px 15px;
                 >a{
-                    cursor: pointer;
                     font-weight: 900;
                     color: white;
                     text-decoration: none;
@@ -94,10 +97,11 @@ const StyledHeader = styled.header`
                     text-decoration: none;
                 }
             }
-            >.menu:hover, .pro:hover, .language:hover, .login:hover, .watchlist:hover, .addMovie:hover, .logout:hover, .avatar:hover{
+            >.menu:hover, .pro:hover, .lightMode:hover, .login:hover, .watchlist:hover, .addMovie:hover, .logout:hover, .avatar:hover{
                 background-color: #252525;
                 border-radius: 15px;
                 border: none;
+                cursor: pointer;
             }
         }
         >div:last-child{
@@ -187,7 +191,7 @@ const Header = () => {
                     </>
                     )
                 }
-                <button className='language'>EN</button>
+                <button className='lightMode'><LightModeIcon /></button>
                 </div>
         </nav>
        </StyledHeader>
