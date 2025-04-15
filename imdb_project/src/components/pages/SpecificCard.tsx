@@ -9,6 +9,8 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 const StyledSection = styled.section`
     padding: 10px 200px;
@@ -42,7 +44,7 @@ const StyledSection = styled.section`
     .topics{
         border-right: #585858 1px solid;
     }
-    .info{
+    .info, .castAndRatings{
         display: flex;
         justify-content: space-between;
     }
@@ -123,6 +125,55 @@ const SpecificCard = () => {
                 }
                 <button><VideoLibraryIcon />{totalVideos} videos</button>
                 <button><PhotoLibraryIcon/>{totalPhotos} photos</button>
+            </div>
+            <div className="castAndRatings">
+                <div>
+                    {
+                    movie?.genres?.map((genre, index) => (
+                    <span 
+                        key={index} 
+                        className="genre"
+                    >{genre}</span>
+                    ))
+                    }
+                    <p>{movie?.description}</p>
+                    <p>Director <a href="#">{movie?.castAndCrew.director}</a></p>
+                    <p>Writers
+                        {
+                            movie?.castAndCrew.writers.slice(0,3).map((writer, index) => (
+                                <a href="#"
+                                    key={index}
+                                    className="writer"
+                                >{writer.name}</a>
+                            ))
+                        }
+                    <ArrowForwardIosIcon />
+                    </p>
+                    <Link to="castAndCrew"><p>Stars
+                        {
+                            movie?.castAndCrew.actors.slice(0,3).map((actor, index) => (
+                                <span
+                                    key={index}
+                                    className="writer"
+                                >{actor.name}</span>
+                            ))
+                        }
+                    <ArrowForwardIosIcon />
+                    </p>
+                    </Link>
+                    <p>
+                        <span>IMDb<span>Pro</span></span> 
+                        <a href="https://pro.imdb.com/title/tt7286456/?rf=cons_tt_atf&ref_=cons_tt_atf">
+                        See production info at IMDbPro 
+                        <OpenInNewIcon/></a>
+                    </p>
+                </div>
+                <div>
+                    <button>Add to watch list <span>Added by 1.0M users</span></button>
+                    <span>{movie?.reviews?.users} User reviews</span>
+                    <span>{movie?.reviews?.critics} Critic reviews</span>
+                    <span><span>{movie?.reviews?.metascore}</span> Metascore</span>
+                </div>
             </div>
         </StyledSection>
      );
