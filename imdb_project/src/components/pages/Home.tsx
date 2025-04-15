@@ -1,11 +1,11 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import styled from "styled-components";
 import MovieCard from "../UI/molecules/MovieCard";
 import { ArrowForwardIos } from '@mui/icons-material';
 
 
 import useMoviesContext from "../../contexts/MoviesContext";
-import { MoviesContextTypes } from "../../types";
+// import { MoviesContextTypes } from "../../types";
 
 const StyledSection = styled.section`
  
