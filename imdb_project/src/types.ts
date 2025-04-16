@@ -7,6 +7,7 @@ export type User = {
   passwordText: string;
   profilePicture?: string;
   role: 'customer' | 'admin';
+  joined: string;
 };
 export type ChildrenProp = {
   children: React.ReactElement
@@ -97,3 +98,8 @@ export type MoviesContextTypes = {
   addNewMovie: (newMovie: Movie) => void,
   findMovie: (id: Movie["id"]) => Movie | string
 }
+
+export type SearchContextType = {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+};
