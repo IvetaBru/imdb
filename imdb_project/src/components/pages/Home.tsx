@@ -1,11 +1,11 @@
-// import { useContext } from "react";
 import styled from "styled-components";
 import MovieCard from "../UI/molecules/MovieCard";
 import { ArrowForwardIos } from '@mui/icons-material';
-
+import { useContext, useEffect, useState } from "react";
 
 import useMoviesContext from "../../contexts/MoviesContext";
-// import { MoviesContextTypes } from "../../types";
+import { Movie, SearchContextType } from "../../types";
+import SearchContext from "../../contexts/SearchContext";
 
 const StyledSection = styled.section`
  
@@ -52,7 +52,16 @@ const Arrow = styled(ArrowForwardIos)`
 
 const Home = () => {    
    
-  const { movies } = useMoviesContext();   
+  const { movies } = useMoviesContext(); 
+  const { searchValue } = useContext(SearchContext) as SearchContextType;  
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
+
+  useEffect(() => {
+    const filtered = movies.filter((movie) => movie.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()));
+    setFilteredMovies(filtered);
+  }, [searchValue, movies])
+
+
     return ( 
       <>
         <StyledSection>
@@ -63,15 +72,19 @@ const Home = () => {
           </div>
           
           <div className="cardsContainer">
-            {
-              movies ?  
-              movies.map(movie => 
-                <MovieCard
-                  data={movie}
-                  key={movie.id}            
-                />)
-              : <p>Loading ... </p> 
-            }            
+          {!movies.length ? (
+              <p>Loading...</p>
+            ) : searchValue === '' ? (
+              movies.map((movie) => (
+                <MovieCard data={movie} key={movie.id} />
+              ))
+            ) : filteredMovies.length > 0 ? (
+              filteredMovies.map((movie) => (
+                <MovieCard data={movie} key={movie.id} />
+              ))
+            ) : (
+              <p>No results found.</p>
+          )}           
           </div>
         </StyledSection>        
       </>   
