@@ -144,7 +144,7 @@ const Copyright = styled.div`
 
 const Register = () => {
   const navigate = useNavigate();
-  const { users, dispatch } = useContext(UsersContext) as UsersContextTypes;
+  const { users, dispatch, setLoggedInUser } = useContext(UsersContext) as UsersContextTypes;
 
   const initialValues: InitValues = {
     username: '',
@@ -173,7 +173,7 @@ const Register = () => {
       .required('This field is required.'),
   });
 
-  type InitValues = Omit<User, 'id' | 'passwordText'> & { passwordRepeat: string };
+  type InitValues = Omit<User, 'id' | 'passwordText' | 'joined'> & { passwordRepeat: string };
 
   const handleSubmit = (
     values: InitValues,
@@ -196,11 +196,14 @@ const Register = () => {
       email: values.email,
       password: bcrypt.hashSync(values.password, 10),
       passwordText: values.password,
-      role: 'customer'
+      role: 'customer',
+      joined: new Date().toISOString()
     };
 
-    dispatch({ type: 'addUser', newUser });
-    navigate('/login');
+    dispatch({ type: "addUser", newUser });
+    setLoggedInUser(newUser);
+    localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+    navigate("/");
   };
 
   return (
