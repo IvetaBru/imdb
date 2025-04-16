@@ -5,6 +5,7 @@ import { Movie } from "../../../types";
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import { Add } from "@mui/icons-material";
 
 
 const ModalWrapper = styled.div`
@@ -63,11 +64,18 @@ const ModalWrapper = styled.div`
   background-color: #2b2a2a; 
   border-radius: 8px;    
 }
-.Alist{
+.Alist, .down{
   color: #4479c9;
+  font-weight: 600;
   text-decoration: none;  
 }
-.Plus{
+.Plus, .down{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.down{
   font-size: 25px;
 }
 `;
@@ -110,10 +118,10 @@ const HoverModal: React.FC<Props> = ({ movie }) => {
       <p><strong></strong> {movie.description.slice(0, 100)}...</p>
       <section className="Conteiner">
         <div className="List">
-            <a className="Alist" href=""><span className="Plus"> + </span> Watchlist</a>
+            <a className="Alist" href=""><span className="Plus"><Add/> Watchlist </span> </a>
         </div>
         <div className="AltIcon">
-        <a href=""><ThumbDownOffAltIcon className="Alist"/></a>
+        <a href=""><ThumbDownOffAltIcon className="down"/></a>
         </div>
       </section>
     </ModalWrapper>
