@@ -12,6 +12,7 @@ import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const StyledSection = styled.section`
     padding: 10px 200px;
@@ -136,6 +137,9 @@ const StyledSection = styled.section`
             border-radius: 10px;
             border: none;
         }
+        >button:hover{
+            background-color: #7a7a7a;
+        }
     }
     .castAndRatings{
         display: grid;
@@ -192,18 +196,39 @@ const StyledSection = styled.section`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        >button{
-            width: 100%;
+        >div{
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 5px 10px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            >span{
-                font-size: 10px;
-                font-weight: 200;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2px;
+            >button{
+                padding: 10px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+                border: none;
+            }
+            >button:hover{
+                background-color: #7a7a7a
+            }
+            >button:first-child{
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                border-top-left-radius:5px;
+                border-bottom-left-radius: 5px;
+                >span{
+                    font-size: 10px;
+                    font-weight: 200;
+                }
+            }
+            >button:last-child{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
             }
         }
         >div{
@@ -353,7 +378,10 @@ const SpecificCard = () => {
                     </p>
                 </div>
                 <div className="ratings">
-                    <button>Add to watch list <span>Added by 1.0M users</span></button>
+                    <div>
+                        <button>Add to watch list <span>Added by 1.0M users</span></button>
+                        <button><KeyboardArrowDownIcon/></button>
+                    </div>
                     <div>
                         <span> <span>{movie?.reviews?.users}</span> User reviews</span>
                         <span> <span>{movie?.reviews?.critics}</span> Critic reviews</span>
