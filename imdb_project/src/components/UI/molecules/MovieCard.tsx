@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { TurnedIn, Add, Star, StarOutline } from "@mui/icons-material";
 import { Movie } from "../../../types";
-import HoverModal from "../organisms/HoverModal"; // <- Importuojam
+import HoverModal from "../organisms/HoverModal";
 
 const Flag = styled(TurnedIn)`
   &.override {
@@ -123,11 +123,26 @@ type Props = {
 
 const MovieCard: React.FC<Props> = ({ data }) => {
   const [showModal, setShowModal] = useState(false);
+  const timerRef = useRef<number | null>(null); // <- naudoti number vietoj NodeJS.Timeout
+
+  const handleMouseEnter = () => {
+    timerRef.current = window.setTimeout(() => {
+      setShowModal(true);
+    }, 800);
+  };
+
+  const handleMouseLeave = () => {
+    if (timerRef.current !== null) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+    setShowModal(false);
+  };
 
   return (
     <StyledMovieCard
-      onMouseEnter={() => setShowModal(true)}
-      onMouseLeave={() => setShowModal(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div id="container">
         <Flag className={"override"} />
@@ -165,3 +180,4 @@ const MovieCard: React.FC<Props> = ({ data }) => {
 };
 
 export default MovieCard;
+
