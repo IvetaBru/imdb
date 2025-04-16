@@ -190,6 +190,11 @@ const EmptyText = styled.div`
   color: #888;
 `;
 
+const formatJoinDate = (iso: string): string => {
+  const date = new Date(iso);
+  return date.toLocaleString("default", { month: "short", year: "numeric" });
+};
+
 const User = () => {
   const { loggedInUser } = useContext(UsersContext) as UsersContextTypes;
   const user = loggedInUser!;
@@ -207,7 +212,7 @@ const User = () => {
                 <ProfileName>{user.username}</ProfileName>
                 <Joined>
                   <CalendarMonthIcon />
-                  Joined Jan 2024
+                  Joined {formatJoinDate(user.joined)}
                 </Joined>
                 <EditProfile>Edit profile</EditProfile>
               </UserInfo>

@@ -7,6 +7,7 @@ export type User = {
   passwordText: string;
   profilePicture?: string;
   role: 'customer' | 'admin';
+  joined: string;
 };
 export type ChildrenProp = {
   children: React.ReactElement
