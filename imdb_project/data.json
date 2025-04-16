@@ -3388,28 +3388,22 @@
   ],
   "users": [
     {
-      "id": "f6e73cc5-1dae-456b-a43e-575d888877e2",
-      "username": "Tomas",
-      "email": "tomas@forumcinemashe.lt",
-      "password": "$2b$10$jxIGWgnKb9Loo1xvx65zE.3yWX3F/sMTCNek/tsojzjHzfifMh.fK",
-      "passwordText": "Tomas123!",
-      "role": "admin"
-    },
-    {
-      "id": "39ad0159-5dd9-4be2-ad64-cff30b3c1005",
-      "username": "TomasB",
-      "email": "t.baublys@icloud.lt",
-      "password": "$2b$10$lOKPZLojUcx7RU8YSU6xR.xeavLpiLlxxV3HMFgaJlT2wVo5FYlmu",
-      "passwordText": "Tomas123!",
-      "role": "customer"
-    },
-    {
       "id": "0591fe2e-57e4-4bba-a87e-cb59cd58c944",
       "username": "TomasA",
       "email": "john.doe@example.com",
       "password": "$2b$10$62hqUhcSWTa2X4N/mZ6rGOzQcDrJ3SzFbYpAL0pX4Ie6QsrSAhZXy",
       "passwordText": "Tomas123!",
-      "role": "customer"
+      "role": "customer",
+      "joined": "2024-04-16T08:08:39.439Z"
+    },
+    {
+      "id": "3780ec44-c37b-406f-b43b-a568def29e3c",
+      "username": "Tomas",
+      "email": "tomas@forumcinemashe.lt",
+      "password": "$2b$10$yp3YhDYa2TUMEj/eJTdgq.YyaLsU9WGpooYMjvGvK.XQ5xg1ngQtm",
+      "passwordText": "Tomas123!",
+      "role": "admin",
+      "joined": "2025-04-16T08:08:39.439Z"
     }
   ]
 }

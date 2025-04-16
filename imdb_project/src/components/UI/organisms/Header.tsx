@@ -126,14 +126,14 @@ const Header = () => {
     const { searchValue, setSearchValue } = useContext(SearchContext) as SearchContextType;
     const navigate = useNavigate();
 
-    return ( 
-       <StyledHeader>
-        <nav>
+    return (
+        <StyledHeader>
+            <nav>
                 <div>
                     <Link to='/'>
-                        <img 
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/1280px-IMDB_Logo_2016.svg.png" 
-                            alt="logo" 
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/1280px-IMDB_Logo_2016.svg.png"
+                            alt="logo"
                         />
                     </Link>
                 </div>
@@ -147,62 +147,56 @@ const Header = () => {
                         onChange={e => setSearchValue(e.target.value)}
                     />
                     <button className='pro'>
-                        <a href="https://pro.imdb.com/login/ap?u=/login/lwa&imdbPageAction=signUp&rf=cons_nb_hm&ref_=cons_nb_hm" 
-                        target="_blank" 
-                        >IMDb<span>Pro</span>
+                        <a
+                            href="https://pro.imdb.com/login/ap?u=/login/lwa&imdbPageAction=signUp&rf=cons_nb_hm&ref_=cons_nb_hm"
+                            target="_blank"
+                        >
+                            IMDb<span>Pro</span>
                         </a>
                     </button>
                 </div>
                 <div>
-                {
-                    loggedInUser ? (loggedInUser.role === 'admin' ? 
-                    (
-                    <>
-                        <button className='addMovie'><Link to='addMovie'><AddIcon /></Link></button>
-                        <AccountCircleIcon 
-                        onClick={() => navigate("/")}
-                        className='avatar'
-                        />
-                        <span>{loggedInUser.username}</span>
-                        <LogoutIcon 
-                        onClick={() => {
-                            setLoggedInUser(null);
-                            navigate("/")
-                        }}
-                        className='logout'
-                        />
-                    </>
-                    ) : (
-                    <>
-                        <button className='watchlist'><Link to='/watchlist'><BookmarkAddIcon />Watchlist</Link></button>
-                        <AccountCircleIcon 
-                        onClick={() => navigate("/")}
-                        className='avatar'
-                        />
-                        <span>{loggedInUser.username}</span>
-                        <LogoutIcon 
-                        onClick={() => {
-                            setLoggedInUser(null);
-                            navigate("/")
-                        }}
-                        className='logout'
-                        />
-                    </>
-                    )) : (
-                    <>
-                    <button className='watchlist'>
-                        <Link to='login'><BookmarkAddIcon />Watchlist</Link>
-                    </button>
-                    <button className='login'>
-                        <Link to='/login'>Sign In</Link>
-                    </button>
-                    </>
-                    )
-                }
-                <button className='lightMode'><LightModeIcon /></button>
+                    {
+                        loggedInUser ? (
+                            <>
+                                {loggedInUser.role === 'admin' ? (
+                                    <button className='addMovie'>
+                                        <Link to='addMovie'><AddIcon /></Link>
+                                    </button>
+                                ) : (
+                                    <button className='watchlist'>
+                                        <Link to='/watchlist'><BookmarkAddIcon />Watchlist</Link>
+                                    </button>
+                                )}
+                                <AccountCircleIcon
+                                    onClick={() => navigate("/user")}
+                                    className='avatar'
+                                />
+                                <span>{loggedInUser.username}</span>
+                                <LogoutIcon 
+                                    onClick={() => {
+                                        setLoggedInUser(null);
+                                        localStorage.removeItem("loggedInUser"); // ✅ manually remove from storage
+                                        navigate("/");
+                                    }}
+                                    className='logout'
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <button className='watchlist'>
+                                    <Link to='/login'><BookmarkAddIcon />Watchlist</Link>
+                                </button>
+                                <button className='login'>
+                                    <Link to='/login'>Sign In</Link>
+                                </button>
+                            </>
+                        )
+                    }
+                    <button className='lightMode'><LightModeIcon /></button>
                 </div>
-        </nav>
-       </StyledHeader>
-     );
+            </nav>
+        </StyledHeader>
+    );
 }
 export default Header;
