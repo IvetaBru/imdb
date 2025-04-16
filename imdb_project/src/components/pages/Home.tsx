@@ -10,6 +10,7 @@ import SearchContext from "../../contexts/SearchContext";
 const StyledSection = styled.section`
  
   padding: 0 200px;
+  padding-bottom: 40px;
   margin: 30px 15px;
   
   > .headerContainer
