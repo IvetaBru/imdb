@@ -242,6 +242,8 @@ const SpecificCard = () => {
         }
     }, [id, findMovie]);
 
+    
+
     const youtubeUrl = movie?.videos?.trailers?.[0];
     const getEmbedUrl = (url: string) => {
     const match = url.match(/v=([^&]+)/);
@@ -266,7 +268,8 @@ const SpecificCard = () => {
     return ( 
         <StyledSection>
            <div className="menu">
-            <Link to="castAndCrew">Cast & crew</Link>
+            <Link to={`/movie/${id}/castAndCrew`}>Cast & crew</Link>
+            
             <Link to="/">User reviews</Link>
             <Link to='/'>Trivia</Link>
             <Link to="/">FAQ</Link>
@@ -343,7 +346,7 @@ const SpecificCard = () => {
                                 >{actor.name}</a>
                             ))
                         }
-                    <Link to="castAndCrew"><ArrowForwardIosIcon /></Link>
+                    <Link to={`/movie/${id}/castAndCrew`}><ArrowForwardIosIcon /></Link>
                     </p>
                     <p>
                         <span className="pro">IMDb<span>Pro</span></span> 

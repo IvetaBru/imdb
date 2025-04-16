@@ -23,15 +23,11 @@ const StyledSection = styled.section`
 
   > .cardsContainer
   {
-    /* display: flex;
-    
-    */
-
     display: grid;
     grid-template-columns: repeat(6, auto) ;
     gap: 15px;
     padding: 0 16px;
-}
+  }
   
 
 `;
