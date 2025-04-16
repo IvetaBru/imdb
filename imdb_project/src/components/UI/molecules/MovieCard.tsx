@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import {Link, useNavigate} from "react-router";
+import {Link} from "react-router";
 
 import { TurnedIn, Add, Star, StarOutline  } from '@mui/icons-material';
+import { Movie } from "../../../types";
 
 const Flag = styled(TurnedIn)`
   &.override
@@ -137,19 +138,21 @@ const StyledMovieCard = styled.div`
  }
 `;
 
-// TODO: change without error: any -> Props ?
-const MovieCard = ({data} : any)=> {
+type Props = {
+  data: Movie
+}
 
+const MovieCard = ({data} : Props)=> {
 
   return ( 
     <StyledMovieCard>
       <div id="container">
         <Flag className={'override'}/>
         <AddSymbol className={'override'}/>
-        
-        <a href="">
+  
+        <Link to={`movie/${data.id}`}>
           <img src={data.photos.poster[0]} alt="" />
-        </a>
+        </Link>
 
         <div className="stars">
           <div>
@@ -160,7 +163,7 @@ const MovieCard = ({data} : any)=> {
         </div>
 
         <div className="link">
-          <a href="" className="filmName">{data.title}</a>
+          <Link to={`movie/${data.id}`} className="filmName">{data.title}</Link>
         </div>
 
         <div className="more">
