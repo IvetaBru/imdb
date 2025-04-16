@@ -3330,6 +3330,60 @@
         "critics": 453,
         "metascore": 66
       }
+    },
+    {
+      "id": "be14bbe0-3dfd-4970-955a-89fab37064a6",
+      "title": "Avengers: Infinity War",
+      "releaseYear": 2018,
+      "eirinCategory": "PG-13",
+      "length": 149,
+      "IMDB": {
+        "totalScore": 8.4
+      },
+      "photos": {
+        "poster": [
+          "https://www.movieposters.com/cdn/shop/products/avengersinfinitywar.styleb.reg.ar.jpg?v=1594305978"
+        ],
+        "cutscenes": [
+          "https://static1.srcdn.com/wordpress/wp-content/uploads/2018/03/Okoye-Black-Panther-Captain-America-Black-Widow-and-Bucky-the-White-Wolf-in-Wakanda-for-Avengers-Infinity-War.jpg"
+        ]
+      },
+      "videos": {
+        "trailers": [
+          "https://www.youtube.com/watch?v=ZCPN9SfdH7c"
+        ],
+        "cutscenes": [
+          "https://lumiere-a.akamaihd.net/v1/images/aiw_thumb_yt_e3a661b2.jpeg?region=0,0,1280,720"
+        ]
+      },
+      "genres": [
+        "Action",
+        "Fantasy"
+      ],
+      "description": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
+      "castAndCrew": {
+        "director": "Russo brothers",
+        "writers": [
+          {
+            "name": "Christopher Markus",
+            "role": "screenplay"
+          },
+          {
+            "name": "Stephen McFeely",
+            "role": "screenplay"
+          }
+        ],
+        "actors": [
+          {
+            "name": "Robert Downey Jr.",
+            "character": [
+              "Tony Stark",
+              "Iron Man"
+            ],
+            "actorPhoto": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Robert_Downey_Jr._2014_Comic-Con.jpg/1200px-Robert_Downey_Jr._2014_Comic-Con.jpg"
+          }
+        ]
+      }
     }
   ],
   "users": [
