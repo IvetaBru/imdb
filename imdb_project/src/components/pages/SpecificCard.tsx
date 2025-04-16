@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router";
-import { useEffect, useState } from "react";
-import { Movie, MoviesContextTypes } from "../../types";
+import { useContext, useEffect, useState } from "react";
+import { Movie, MoviesContextTypes, UsersContextTypes } from "../../types";
 import useMoviesContext from "../../contexts/MoviesContext";
 import styled from "styled-components";
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
@@ -12,6 +12,9 @@ import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import DeleteIcon from '@mui/icons-material/Delete';
+import UsersContext from "../../contexts/UsersContext";
 
 const StyledSection = styled.section`
     padding: 10px 200px;
@@ -32,10 +35,14 @@ const StyledSection = styled.section`
         >a:hover{
             text-decoration: underline;
         }
-        >a:last-child:hover{
+        >.deleteIcon, .share{
+            padding: 5px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+        >.deleteIcon:hover, .share:hover{
             background-color: #3f3e3e;
             border-radius: 15px;
-
         }
     }
     .imdb{
@@ -136,6 +143,9 @@ const StyledSection = styled.section`
             border-radius: 10px;
             border: none;
         }
+        >button:hover{
+            background-color: #7a7a7a;
+        }
     }
     .castAndRatings{
         display: grid;
@@ -192,18 +202,39 @@ const StyledSection = styled.section`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        >button{
-            width: 100%;
+        >div{
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 5px 10px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            >span{
-                font-size: 10px;
-                font-weight: 200;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2px;
+            >button{
+                padding: 10px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+                border: none;
+            }
+            >button:hover{
+                background-color: #7a7a7a
+            }
+            >button:first-child{
+                width: 90%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                border-top-left-radius:5px;
+                border-bottom-left-radius: 5px;
+                >span{
+                    font-size: 10px;
+                    font-weight: 200;
+                }
+            }
+            >button:last-child{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
             }
         }
         >div{
@@ -229,7 +260,8 @@ const SpecificCard = () => {
 
     const { id } = useParams();
     const [movie, setMovie] = useState<Movie | null>(null);
-    const {findMovie} = useMoviesContext() as MoviesContextTypes;
+    const {findMovie, deleteOneMovie } = useMoviesContext() as MoviesContextTypes;
+    const {loggedInUser} = useContext(UsersContext) as UsersContextTypes;
     
     useEffect(() => {
         if(id){
@@ -265,6 +297,8 @@ const SpecificCard = () => {
     
     return ( 
         <StyledSection>
+            <div>
+            </div>
            <div className="menu">
             <Link to="castAndCrew">Cast & crew</Link>
             <Link to="/">User reviews</Link>
@@ -272,7 +306,13 @@ const SpecificCard = () => {
             <Link to="/">FAQ</Link>
             <a href="https://pro.imdb.com/title/tt7286456/?rf=cons_tt_ov_hdr&ref_=cons_tt_ov_hdr" className="imdb">IMDbPro</a>
             <Link to="/" className="topics"><AutoAwesomeMosaicIcon/>All topics</Link>
-            <a href="#"><ShareIcon /></a>
+            <a href="#"><ShareIcon className="share"/></a>
+                {
+                    movie && loggedInUser?.role === 'admin' ? 
+                    (
+                    <DeleteIcon onClick={() => deleteOneMovie(movie.id)} className="deleteIcon"/>
+                    ) : null
+                }
             </div> 
             <div className="info">
                 <div>
@@ -353,7 +393,10 @@ const SpecificCard = () => {
                     </p>
                 </div>
                 <div className="ratings">
-                    <button>Add to watch list <span>Added by 1.0M users</span></button>
+                    <div>
+                        <button>Add to watch list <span>Added by 1.0M users</span></button>
+                        <button><KeyboardArrowDownIcon/></button>
+                    </div>
                     <div>
                         <span> <span>{movie?.reviews?.users}</span> User reviews</span>
                         <span> <span>{movie?.reviews?.critics}</span> Critic reviews</span>

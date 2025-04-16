@@ -7,9 +7,9 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
 const ModalWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 210px;
+  position: fixed;
+  top: 200px;
+  left: 200px;
   width: 700px;
   height: 450px;
   background: #1a1a1a;
