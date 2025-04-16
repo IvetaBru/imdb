@@ -32,8 +32,7 @@ const AddSymbol = styled(Add)`
   }
 `;
 
-const StyledMovieCard = styled.div`
-  /* position: relative; */
+const StyledMovieCard = styled.div`  position: relative;
 
   #container {
     width: 200px;
