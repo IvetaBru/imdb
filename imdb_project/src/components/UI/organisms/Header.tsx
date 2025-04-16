@@ -9,7 +9,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
 import UsersContext from '../../../contexts/UsersContext';
-import { UsersContextTypes } from '../../../types';
+import { SearchContextType, UsersContextTypes } from '../../../types';
+import SearchContext from '../../../contexts/SearchContext';
 
 const StyledHeader = styled.header`
     margin: 0;
@@ -122,6 +123,7 @@ const StyledHeader = styled.header`
 const Header = () => {
 
     const { loggedInUser, setLoggedInUser } = useContext(UsersContext) as UsersContextTypes;
+    const { searchValue, setSearchValue } = useContext(SearchContext) as SearchContextType;
     const navigate = useNavigate();
 
     return (
@@ -137,7 +139,13 @@ const Header = () => {
                 </div>
                 <div>
                     <button className='menu'><MenuIcon />Menu</button>
-                    <input type="text" placeholder='Search IMDb' />
+                    <input 
+                        type="text" 
+                        id="filterMovies" name="filterMovies"
+                        placeholder='Search IMDb' 
+                        value={searchValue}
+                        onChange={e => setSearchValue(e.target.value)}
+                    />
                     <button className='pro'>
                         <a
                             href="https://pro.imdb.com/login/ap?u=/login/lwa&imdbPageAction=signUp&rf=cons_nb_hm&ref_=cons_nb_hm"
