@@ -51,7 +51,7 @@ const StyledSection = styled.section`
     .container{
         min-width: 50%;
         background-color: #1a1a1a;
-        padding: 20px;
+        padding: 30px;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
