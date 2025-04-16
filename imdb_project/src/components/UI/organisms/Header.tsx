@@ -152,16 +152,17 @@ const Header = () => {
                     <>
                         <button className='addMovie'><Link to='addMovie'><AddIcon /></Link></button>
                         <AccountCircleIcon 
-                        onClick={() => navigate("/")}
+                        onClick={() => navigate("/user")}
                         className='avatar'
                         />
                         <span>{loggedInUser.username}</span>
                         <LogoutIcon 
-                        onClick={() => {
-                            setLoggedInUser(null);
-                            navigate("/")
-                        }}
-                        className='logout'
+                            onClick={() => {
+                                setLoggedInUser(null);
+                                localStorage.removeItem("loggedInUser");
+                                navigate("/");
+                            }}
+                            className='logout'
                         />
                     </>
                     ) : (
