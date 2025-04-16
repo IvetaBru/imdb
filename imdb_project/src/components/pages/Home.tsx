@@ -9,7 +9,7 @@ import SearchContext from "../../contexts/SearchContext";
 
 const StyledSection = styled.section`
  
-  padding: 0 18px;
+  padding: 0 200px;
   margin: 30px 15px;
   
   > .headerContainer
@@ -23,14 +23,14 @@ const StyledSection = styled.section`
 
   > .cardsContainer
   {
-    /* display: flex;
-    
-    */
-
-    display: grid;
-    grid-template-columns: repeat(6, auto) ;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* display: grid;
+    grid-template-columns: repeat(6, auto);
     gap: 15px;
-    padding: 0 16px;
+    padding: 0 16px; */
 }
   
 

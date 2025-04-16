@@ -33,27 +33,29 @@ const AddSymbol = styled(Add)`
 `;
 
 const StyledMovieCard = styled.div`
-  position: relative;
+  /* position: relative; */
 
   #container {
     width: 200px;
+    height: auto;
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
     flex: 1;
     position: relative;
+    background-color:  #1a1a1a;
 
     .blue {
-      color: #0ab3dd;
+      color: #4479c9;
+      font-weight: 600;
     }
 
     > a {
-      text-decoration: none;
-      color: white;
-
+      
       > img {
         width: 100%;
         height: 267.583px;
         object-fit: cover;
+        border-radius: 10px 10px 0px 0px;
       }
     }
 
@@ -64,33 +66,37 @@ const StyledMovieCard = styled.div`
       > .filmName {
         padding: 5px 15px;
         display: block;
-        width: auto;
-        text-indent: 0;
+        /* width: auto; */
+        /* text-indent: 0; */
+        text-decoration: none;
+        color: white;
+      }
+      >.filmName:hover{
+        text-decoration: underline;
       }
     }
 
     > div.stars {
       display: flex;
-      justify-content: space-evenly;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      padding-left: 15px;
+      padding-top: 10px;
 
       > div {
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding-right: 15px;
-        margin-right: 30px;
-
+        gap: 2px;
         > .star {
-          color: yellow;
+          color: #f1dd23;
         }
-
         > h3 {
           margin: 0;
         }
       }
-
       > .starEmpty {
-        color: lightblue;
+        color: #4479c9;
       }
     }
 
@@ -108,6 +114,7 @@ const StyledMovieCard = styled.div`
         height: 40px;
         width: 150px;
         margin-bottom: 12px;
+        cursor: pointer;
 
         > span {
           margin-right: 10px;
