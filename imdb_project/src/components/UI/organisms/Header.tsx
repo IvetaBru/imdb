@@ -13,7 +13,7 @@ import { UsersContextTypes } from '../../../types';
 
 const StyledHeader = styled.header`
     margin: 0;
-    padding: 10px 300px;
+    padding: 10px 200px;
     height: 56px;
     background-color: #1a1a1a;
     line-height: 0;
