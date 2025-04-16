@@ -12,7 +12,7 @@ const ModalWrapper = styled.div`
   left: 210px;
   width: 700px;
   height: 450px;
-  background: #120c0c;
+  background: #1a1a1a;
   color: white;
   padding: 15px;
   border-radius: 8px;
@@ -60,7 +60,7 @@ const ModalWrapper = styled.div`
   align-items: center;     
   height: 40px;           
   width: auto;            
-  background-color: #1e1e1e; 
+  background-color: #2b2a2a; 
   border-radius: 8px;    
 }
 .Alist{
