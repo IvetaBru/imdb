@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Modal from '../molecules/Modal';
-import styled from 'styled-components';
-import { Movie } from '../../../types';
-import MovieCard from '../molecules/MovieCard';
+import React, { useEffect, useState } from "react";
+import Modal from "../molecules/Modal";
+import styled from "styled-components";
+import { Movie } from "../../../types";
+import MovieCard from "../molecules/MovieCard";
 
 const StyledPage = styled.section`
   .App {
@@ -31,8 +31,9 @@ const MovieListWithModal: React.FC = () => {
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const openModal = (movie: Movie) => setSelectedMovie(movie);
-  const closeModal = () => setSelectedMovie(null);
+  const handleHover = (movie: Movie | null) => {
+    setSelectedMovie(movie);
+  };
 
   useEffect(() => {
     fetch("http://localhost:8080/movies")
@@ -53,20 +54,18 @@ const MovieListWithModal: React.FC = () => {
         <h1>Movie List</h1>
 
         {loading ? (
-          <p>Kraunama...</p>
+          <p>Loading..</p>
         ) : (
           <div className="card-container">
             {movies.map((movie) => (
-              <MovieCard
-                key={movie.id}
-                data={movie}
-                onClick={() => openModal(movie)}
-              />
+              <MovieCard key={movie.id} data={movie} onHover={handleHover} />
             ))}
           </div>
         )}
 
-        {selectedMovie && <Modal movie={selectedMovie} onClose={closeModal} />}
+        {selectedMovie && (
+          <Modal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
+        )}
       </div>
     </StyledPage>
   );
