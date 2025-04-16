@@ -46,7 +46,7 @@ const MoviesProvider = ({ children }: ChildrenProp) => {
         })
     }
 
-    const findProduct = (id: Movie['id']): Movie | string => {
+    const findMovie = (id: Movie['id']): Movie | string => {
         const foundMovie = movies.find(movie => movie.id === id);
         if(foundMovie){
             return foundMovie;
@@ -71,7 +71,7 @@ const MoviesProvider = ({ children }: ChildrenProp) => {
                 movies,
                 dispatch,
                 addNewMovie,
-                findProduct
+                findMovie
             }}
         >
             { children }
