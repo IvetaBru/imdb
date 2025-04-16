@@ -4,13 +4,14 @@ import styled from "styled-components";
 import { Movie } from "../../../types";
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
 const ModalWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 210px;
-  width: 600px;
-  height: 400px;
+  width: 700px;
+  height: 450px;
   background: #120c0c;
   color: white;
   padding: 15px;
@@ -48,7 +49,27 @@ const ModalWrapper = styled.div`
 .icon-blue {
   color: #60c1cc;
 }
-
+.Conteiner{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 10px;
+}
+.List, .AltIcon {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  height: 40px;           
+  width: auto;            
+  background-color: #1e1e1e; 
+  border-radius: 8px;    
+}
+.Alist{
+    color: #00c3ff;
+    text-decoration: none;  
+}
+.Plus{
+    font-size: 25px;
+}
 `;
 
 type Props = {
@@ -80,6 +101,14 @@ const HoverModal: React.FC<Props> = ({ movie }) => {
       </div>
       </section>
       <p><strong></strong> {movie.description.slice(0, 100)}...</p>
+      <section className="Conteiner">
+        <div className="List">
+            <a className="Alist" href=""><span className="Plus"> + </span> Watchlist</a>
+        </div>
+        <div className="AltIcon">
+        <a href=""><ThumbDownOffAltIcon className="Alist"/></a>
+        </div>
+      </section>
     </ModalWrapper>
   );
 };
