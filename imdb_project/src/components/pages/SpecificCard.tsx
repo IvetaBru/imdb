@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Movie, MoviesContextTypes } from "../../types";
+import useMoviesContext from "../../contexts/MoviesContext";
 import styled from "styled-components";
-import MoviesContext from "../../contexts/MoviesContext";
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import ShareIcon from '@mui/icons-material/Share';
 import StarIcon from '@mui/icons-material/Star';
@@ -229,7 +229,7 @@ const SpecificCard = () => {
 
     const { id } = useParams();
     const [movie, setMovie] = useState<Movie | null>(null);
-    const {findMovie} = useContext(MoviesContext) as MoviesContextTypes;
+    const {findMovie} = useMoviesContext() as MoviesContextTypes;
     
     useEffect(() => {
         if(id){

@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useContext } from "react";
 
 import { ChildrenProp, Movie, MoviesContextTypes } from "../types";
 
@@ -16,6 +16,18 @@ const reducer = (state: Movie[], action: ActionTypes) => {
 }
 
 const MoviesContext = createContext<undefined | MoviesContextTypes>(undefined);
+function useMoviesContext() 
+{
+    const movies = useContext(MoviesContext);
+
+    if(movies === undefined)
+    {
+        throw new Error('MoviesContext is undefined');
+    }
+
+    return movies;
+}
+
 const MoviesProvider = ({ children }: ChildrenProp) => {
 
     const [movies, dispatch] = useReducer(reducer, []);
@@ -67,5 +79,10 @@ const MoviesProvider = ({ children }: ChildrenProp) => {
     )
 }
 
-export { MoviesProvider };
-export default MoviesContext;
+// export { MoviesProvider };
+// // export default MoviesContext;
+// export default useMoviesContext;
+
+
+export { MoviesProvider, MoviesContext }; 
+export default useMoviesContext;
