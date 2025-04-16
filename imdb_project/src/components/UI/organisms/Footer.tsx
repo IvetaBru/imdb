@@ -12,11 +12,9 @@ import CopyrightIcon from '@mui/icons-material/Copyright';
 const StyledFooter = styled.footer`
   .Display{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
     color: white;
-    margin-left: 150px;
-    margin-right: 150px;
   }
   .Icon{
     width: 360px;
