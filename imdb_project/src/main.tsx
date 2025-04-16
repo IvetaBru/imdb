@@ -8,12 +8,12 @@ import { SearchProvider } from './contexts/SearchContext.tsx';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
     <BrowserRouter>
-        <SearchProvider>
-            <UsersProvider>
-                <MoviesProvider>
-                    <App />
-                </MoviesProvider>
-            </UsersProvider>
-        </SearchProvider>
+        <MoviesProvider>
+            <SearchProvider>
+                <UsersProvider>
+                        <App />
+                </UsersProvider>
+            </SearchProvider>
+        </MoviesProvider>
     </BrowserRouter>
 );
