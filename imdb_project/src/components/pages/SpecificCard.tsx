@@ -18,6 +18,7 @@ import UsersContext from "../../contexts/UsersContext";
 
 const StyledSection = styled.section`
     padding: 10px 200px;
+    padding-bottom: 40px;
     color: white;
     .menu{
         display: flex;
@@ -138,10 +139,20 @@ const StyledSection = styled.section`
         flex-direction: column;
         gap: 5px;
         >button{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            font-size: 15px;
+            font-weight: 600;
             height: 50%;
             cursor: pointer;
             border-radius: 10px;
             border: none;
+            >svg{
+                font-size: 30px;
+            }
         }
         >button:hover{
             background-color: #7a7a7a;
