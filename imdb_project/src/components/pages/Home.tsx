@@ -52,10 +52,7 @@ const Arrow = styled(ArrowForwardIos)`
 
 const Home = () => {    
    
-  const { movies } = useMoviesContext();
-
-  // const movies = useContext(MoviesContext) as MoviesContextTypes; 
-   
+  const { movies } = useMoviesContext();   
     return ( 
       <>
         <StyledSection>

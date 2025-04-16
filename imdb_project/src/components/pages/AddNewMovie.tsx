@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import styled from "styled-components";
 import { Formik, Form, Field, FieldArray, ErrorMessage} from "formik";
 
-import MoviesContext from "../../contexts/MoviesContext";
 import { Movie, MoviesContextTypes } from "../../types";
 import { useNavigate } from "react-router";
+import useMoviesContext from "../../contexts/MoviesContext";
 
 const StyledSection = styled.section`
     display: flex;
@@ -87,7 +87,8 @@ const StyledSection = styled.section`
 
 const AddNewMovie = () => {
 
-    const { dispatch } = useContext(MoviesContext) as MoviesContextTypes;
+    // const { dispatch } = useContext(MoviesContext) as MoviesContextTypes;
+    const { dispatch } = useMoviesContext() as MoviesContextTypes;
     const navigate = useNavigate();
     const initialValues: Movie = {
         id: "",

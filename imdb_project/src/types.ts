@@ -95,5 +95,5 @@ export type MoviesContextTypes = {
   movies: Movie[],
   dispatch: React.ActionDispatch<[action: ActionTypes]>
   addNewMovie: (newMovie: Movie) => void,
-  findProduct: (id: Movie["id"]) => Movie | string
+  findMovie: (id: Movie["id"]) => Movie | string
 }
