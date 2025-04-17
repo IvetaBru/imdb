@@ -103,4 +103,5 @@ const MoviesProvider = ({ children }: ChildrenProp) => {
 // export default useMoviesContext;
 
 export { MoviesProvider, MoviesContext }; 
+// eslint-disable-next-line react-refresh/only-export-components
 export default useMoviesContext;
