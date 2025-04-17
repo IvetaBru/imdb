@@ -6,7 +6,7 @@ import Login from "./components/pages/Login";
 import AddNewMovie from "./components/pages/AddNewMovie";
 import User from "./components/pages/User";
 import SpecificCard from "./components/pages/SpecificCard";
-import CastAndCrew from "./components/pages/CastAndCrew";
+// import CastAndCrew from "./components/pages/CastAndCrew";
 import Watchlist from "./components/pages/Watchlist";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="addMovie" element={<AddNewMovie />}/>
         <Route path="user" element={<User />} />
         <Route path="/movie/:id" element={<SpecificCard />}/>
-        <Route path="/movie/:id/castAndCrew" element={<CastAndCrew />}/>
+        {/* <Route path="/movie/:id/castAndCrew" element={<CastAndCrew />}/> */}
       </Route>
     </Routes>
     </>
